@@ -1,1 +1,503 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vale · imóveis que combinam com sua vida</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#173128;background:#f7f6f0;font:15px Inter,system-ui}.notice{background:#173128;color:#d7e8d5;text-align:center;padding:9px;font-size:12px}.wrap{max-width:1240px;margin:auto;padding:0 28px}.nav{height:76px;display:flex;align-items:center;justify-content:space-between}.brand{font:700 28px Georgia,serif}.brand i{color:#c96f43;font-style:normal}.links a{margin:0 13px;color:#456057;text-decoration:none}.cta,button{border:0;border-radius:8px;padding:11px 15px;background:#173128;color:#fff;font:inherit;font-weight:700;cursor:pointer}.hero{height:590px;border-radius:24px;overflow:hidden;position:relative;background:url('../../assets/imobiliaria-hero-v1.png') center/cover}.hero:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0d211bd9 2%,#10251a68 50%,transparent 100%)}.hero-copy{position:relative;z-index:1;color:#fff;padding:100px 58px;max-width:660px}.eyebrow{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#ffe2c8;font-weight:800}.hero h1{font:700 clamp(44px,6vw,72px)/.95 Georgia,serif;letter-spacing:-3px;margin:16px 0}.hero p{font-size:18px;line-height:1.55;color:#e0ebe0}.search{position:absolute;z-index:2;bottom:28px;left:28px;right:28px;background:#fff;border-radius:14px;padding:12px;display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:9px;box-shadow:0 12px 36px #00160c66}.search label{color:#65736c;font-size:11px;font-weight:700;padding:0 9px}.search select,.search input{width:100%;border:0;background:#f2f3ef;border-radius:8px;padding:11px;color:#2e3b34}.search button{background:#c96f43}.section{padding:82px 0}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:27px}.section h2{font:700 43px Georgia,serif;margin:0;letter-spacing:-1.5px}.section p{color:#617067;max-width:510px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid #e2e5dd;border-radius:16px;overflow:hidden;cursor:pointer;transition:.2s}.card:hover{transform:translateY(-5px);box-shadow:0 20px 35px #1d372015}.pic{height:225px;background-size:cover;background-position:center}.p2{background:linear-gradient(135deg,#e5d0b6,#8da996)}.p3{background:linear-gradient(135deg,#d8e0de,#a4a6b8)}.info{padding:17px}.tag{font-size:11px;background:#f9e5d8;color:#a7502d;padding:5px 7px;border-radius:99px}.info h3{font-size:19px;margin:12px 0 5px}.info p{margin:0;color:#68756e}.price{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-weight:800;font-size:17px}.story{background:#e7eee1;border-radius:24px;padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:60px}.story h2{font:700 42px Georgia,serif;margin:0}.steps{display:grid;gap:18px}.step{padding:17px;background:#f8faf4;border-radius:12px}.step b{color:#c96f43}.footer{padding:36px 0;color:#6d7c74}.modal{display:none;position:fixed;inset:0;background:#00170caa;z-index:10;place-items:center;padding:18px}.modal.show{display:grid}.dialog{width:min(760px,100%);background:#fff;border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr}.dialog-img{min-height:360px;background:url('../../assets/imobiliaria-hero-v1.png') center/cover}.dialog-info{padding:28px}.dialog-info h2{font:700 31px Georgia,serif;margin:0 0 10px}.dialog-info input,.dialog-info select{width:100%;padding:11px;border:1px solid #d9dfd7;border-radius:7px;margin:7px 0}.close{float:right;background:transparent;color:#52665b;padding:0;font-size:20px}@media(max-width:760px){.links{display:none}.wrap{padding:0 16px}.hero{height:600px}.hero-copy{padding:65px 27px}.search{grid-template-columns:1fr 1fr;bottom:16px;left:16px;right:16px}.grid{grid-template-columns:1fr}.story{grid-template-columns:1fr;padding:29px;gap:25px}.dialog{grid-template-columns:1fr}.dialog-img{min-height:160px}.section h2{font-size:35px}}</style></head><body><div class="notice">Curadoria, busca e agendamento em uma experiência imobiliária.</div><main class="wrap"><nav class="nav"><div class="brand">vale<i>.</i></div><div class="links"><a href="#imoveis">Imóveis</a><a href="#como">Como funciona</a><a href="#contato">Atendimento</a></div><button onclick="openModal()">Agendar visita</button></nav><section class="hero"><div class="hero-copy"><span class="eyebrow">Curadoria imobiliária</span><h1>Um endereço que faz sentido para sua próxima fase.</h1><p>Encontramos imóveis com contexto: luz, vizinhança, rotina e espaço para o jeito que você quer viver.</p></div><form class="search" onsubmit="event.preventDefault();filterHomes()"><div><label>Onde você quer morar?</label><input id="place" placeholder="Cidade ou bairro"></div><div><label>Tipo de imóvel</label><select id="type"><option value="">Todos</option><option>Casa</option><option>Apartamento</option></select></div><div><label>Faixa de valor</label><select><option>Qualquer valor</option><option>Até R$ 800 mil</option><option>Acima de R$ 1 milhão</option></select></div><button>Buscar imóveis</button></form></section><section class="section" id="imoveis"><div class="section-head"><div><span class="eyebrow" style="color:#b05d36">Seleção da semana</span><h2>Imóveis para viver bem.</h2></div><p id="result">Três imóveis escolhidos por localização, arquitetura e potencial de vida.</p></div><div class="grid" id="homes"><article class="card" onclick="openModal('Casa do Vale')"><div class="pic" style="background-image:url('../../assets/imobiliaria-hero-v1.png')"></div><div class="info"><span class="tag">Casa · Exclusivo</span><h3>Casa do Vale</h3><p>3 suítes · 286 m² · Jardim das Araucárias</p><div class="price">R$ 1.480.000 <span>→</span></div></div></article><article class="card" onclick="openModal('Apartamento Mirante')"><div class="pic p2"></div><div class="info"><span class="tag">Apartamento</span><h3>Apartamento Mirante</h3><p>2 suítes · 118 m² · Centro alto</p><div class="price">R$ 790.000 <span>→</span></div></div></article><article class="card" onclick="openModal('Casa Pátio')"><div class="pic p3"></div><div class="info"><span class="tag">Casa</span><h3>Casa Pátio</h3><p>3 quartos · 204 m² · Vila Verde</p><div class="price">R$ 980.000 <span>→</span></div></div></article></div></section><section class="story" id="como"><div><span class="eyebrow" style="color:#a7502d">Sem pressão, com contexto</span><h2>Visita boa começa antes de abrir a porta.</h2><p>Em vez de despejar anúncios, o processo organiza preferências e só apresenta o que tem chance de virar casa.</p></div><div class="steps"><div class="step"><b>01</b> Você conta como quer viver, não só quantos quartos precisa.</div><div class="step"><b>02</b> A curadoria separa opções com contexto e comparação clara.</div><div class="step"><b>03</b> A visita acontece com as respostas que evitam surpresa depois.</div></div></section><footer class="footer" id="contato">Vale · experiência imobiliária</footer></main><div class="modal" id="modal"><div class="dialog"><div class="dialog-img"></div><div class="dialog-info"><button class="close" onclick="closeModal()">×</button><span class="tag">Agendamento de visita</span><h2 id="homeTitle">Casa do Vale</h2><p>Escolha uma janela de horário. Em uma operação real, esta solicitação entraria na agenda do corretor e enviaria confirmação ao interessado.</p><input placeholder="Seu nome"><input placeholder="Seu melhor telefone"><select><option>Quero visitar pela manhã</option><option>Quero visitar à tarde</option><option>Quero visitar no sábado</option></select><button style="width:100%;margin-top:8px" onclick="sendLead()">Solicitar visita</button></div></div></div><script>function openModal(name){homeTitle.textContent=name||'Casa do Vale';modal.classList.add('show')}function closeModal(){modal.classList.remove('show')}function sendLead(){closeModal();alert('Visita solicitada. Uma confirmação seria enviada na operação real.')}function filterHomes(){let p=place.value.trim(),t=type.value;result.textContent=p||t?'Mostrando imóveis compatíveis com sua busca.':'Três imóveis escolhidos por localização, arquitetura e potencial de vida.';document.querySelector('#imoveis').scrollIntoView({behavior:'smooth'})}</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vale · imóveis que combinam com sua vida</title>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            color: #173128;
+            background: #f7f6f0;
+            font: 15px Inter, system-ui
+        }
+
+        .notice {
+            background: #173128;
+            color: #d7e8d5;
+            text-align: center;
+            padding: 9px;
+            font-size: 12px
+        }
+
+        .wrap {
+            max-width: 1240px;
+            margin: auto;
+            padding: 0 28px
+        }
+
+        .nav {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .brand {
+            font: 700 28px Georgia, serif
+        }
+
+        .brand i {
+            color: #c96f43;
+            font-style: normal
+        }
+
+        .links a {
+            margin: 0 13px;
+            color: #456057;
+            text-decoration: none
+        }
+
+        .cta,
+        button {
+            border: 0;
+            border-radius: 8px;
+            padding: 11px 15px;
+            background: #173128;
+            color: #fff;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .hero {
+            height: 590px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            background: url('../../assets/imobiliaria-hero-v1.png') center/cover
+        }
+
+        .hero:after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, #0d211bd9 2%, #10251a68 50%, transparent 100%)
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            padding: 100px 58px;
+            max-width: 660px
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffe2c8;
+            font-weight: 800
+        }
+
+        .hero h1 {
+            font: 700 clamp(44px, 6vw, 72px)/.95 Georgia, serif;
+            letter-spacing: -3px;
+            margin: 16px 0
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.55;
+            color: #e0ebe0
+        }
+
+        .search {
+            position: absolute;
+            z-index: 2;
+            bottom: 28px;
+            left: 28px;
+            right: 28px;
+            background: #fff;
+            border-radius: 14px;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr auto;
+            gap: 9px;
+            box-shadow: 0 12px 36px #00160c66
+        }
+
+        .search label {
+            color: #65736c;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 0 9px
+        }
+
+        .search select,
+        .search input {
+            width: 100%;
+            border: 0;
+            background: #f2f3ef;
+            border-radius: 8px;
+            padding: 11px;
+            color: #2e3b34
+        }
+
+        .search button {
+            background: #c96f43
+        }
+
+        .section {
+            padding: 82px 0
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 27px
+        }
+
+        .section h2 {
+            font: 700 43px Georgia, serif;
+            margin: 0;
+            letter-spacing: -1.5px
+        }
+
+        .section p {
+            color: #617067;
+            max-width: 510px;
+            line-height: 1.5
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #e2e5dd;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px #1d372015
+        }
+
+        .pic {
+            height: 225px;
+            background-size: cover;
+            background-position: center
+        }
+
+        .p2 {
+            background-image: url('../../assets/vale-apartamento-publico-v1.jpg')
+        }
+
+        .p3 {
+            background-image: url('../../assets/vale-casa-publica-v1.jpg')
+        }
+
+        .info {
+            padding: 17px
+        }
+
+        .tag {
+            font-size: 11px;
+            background: #f9e5d8;
+            color: #a7502d;
+            padding: 5px 7px;
+            border-radius: 99px
+        }
+
+        .info h3 {
+            font-size: 19px;
+            margin: 12px 0 5px
+        }
+
+        .info p {
+            margin: 0;
+            color: #68756e
+        }
+
+        .price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+            font-weight: 800;
+            font-size: 17px
+        }
+
+        .story {
+            background: #e7eee1;
+            border-radius: 24px;
+            padding: 52px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px
+        }
+
+        .story h2 {
+            font: 700 42px Georgia, serif;
+            margin: 0
+        }
+
+        .steps {
+            display: grid;
+            gap: 18px
+        }
+
+        .step {
+            padding: 17px;
+            background: #f8faf4;
+            border-radius: 12px
+        }
+
+        .step b {
+            color: #c96f43
+        }
+
+        .footer {
+            padding: 36px 0;
+            color: #6d7c74
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: #00170caa;
+            z-index: 10;
+            place-items: center;
+            padding: 18px
+        }
+
+        .modal.show {
+            display: grid
+        }
+
+        .dialog {
+            width: min(760px, 100%);
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr
+        }
+
+        .dialog-img {
+            min-height: 360px;
+            background: url('../../assets/imobiliaria-hero-v1.png') center/cover
+        }
+
+        .dialog-info {
+            padding: 28px
+        }
+
+        .dialog-info h2 {
+            font: 700 31px Georgia, serif;
+            margin: 0 0 10px
+        }
+
+        .dialog-info input,
+        .dialog-info select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #d9dfd7;
+            border-radius: 7px;
+            margin: 7px 0
+        }
+
+        .close {
+            float: right;
+            background: transparent;
+            color: #52665b;
+            padding: 0;
+            font-size: 20px
+        }
+
+        @media(max-width:760px) {
+            .links {
+                display: none
+            }
+
+            .wrap {
+                padding: 0 16px
+            }
+
+            .hero {
+                height: 600px
+            }
+
+            .hero-copy {
+                padding: 65px 27px
+            }
+
+            .search {
+                grid-template-columns: 1fr 1fr;
+                bottom: 16px;
+                left: 16px;
+                right: 16px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+                padding: 29px;
+                gap: 25px
+            }
+
+            .dialog {
+                grid-template-columns: 1fr
+            }
+
+            .dialog-img {
+                min-height: 160px
+            }
+
+            .section h2 {
+                font-size: 35px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="notice">Curadoria, busca e agendamento em uma experiência imobiliária.</div>
+    <main class="wrap">
+        <nav class="nav">
+            <div class="brand">vale<i>.</i></div>
+            <div class="links"><a href="#imoveis">Imóveis</a><a href="#como">Como funciona</a><a
+                    href="#contato">Atendimento</a></div><button onclick="openModal()">Agendar
+                visita</button>
+        </nav>
+        <section class="hero">
+            <div class="hero-copy"><span class="eyebrow">Curadoria imobiliária</span>
+                <h1>Um endereço que faz sentido para sua próxima fase.</h1>
+                <p>Encontramos imóveis com contexto: luz, vizinhança, rotina e espaço para o jeito
+                    que você quer viver.</p>
+            </div>
+            <form class="search" onsubmit="event.preventDefault();filterHomes()">
+                <div><label>Onde você quer morar?</label><input id="place"
+                        placeholder="Cidade ou bairro"></div>
+                <div><label>Tipo de imóvel</label><select id="type">
+                        <option value="">Todos</option>
+                        <option>Casa</option>
+                        <option>Apartamento</option>
+                    </select></div>
+                <div><label>Faixa de valor</label><select>
+                        <option>Qualquer valor</option>
+                        <option>Até R$ 800 mil</option>
+                        <option>Acima de R$ 1 milhão</option>
+                    </select></div><button>Buscar imóveis</button>
+            </form>
+        </section>
+        <section class="section" id="imoveis">
+            <div class="section-head">
+                <div><span class="eyebrow" style="color:#b05d36">Seleção da semana</span>
+                    <h2>Imóveis para viver bem.</h2>
+                </div>
+                <p id="result">Três imóveis escolhidos por localização, arquitetura e potencial de
+                    vida.</p>
+            </div>
+            <div class="grid" id="homes">
+                <article class="card" onclick="openModal('Casa do Vale')">
+                    <div class="pic"
+                        style="background-image:url('../../assets/vale-casa-publica-v1.jpg')"></div>
+                    <div class="info"><span class="tag">Casa · Exclusivo</span>
+                        <h3>Casa do Vale</h3>
+                        <p>3 suítes · 286 m² · Jardim das Araucárias</p>
+                        <div class="price">R$ 1.480.000 <span>→</span></div>
+                    </div>
+                </article>
+                <article class="card" onclick="openModal('Apartamento Mirante')">
+                    <div class="pic p2"></div>
+                    <div class="info"><span class="tag">Apartamento</span>
+                        <h3>Apartamento Mirante</h3>
+                        <p>2 suítes · 118 m² · Centro alto</p>
+                        <div class="price">R$ 790.000 <span>→</span></div>
+                    </div>
+                </article>
+                <article class="card" onclick="openModal('Casa Pátio')">
+                    <div class="pic p3"></div>
+                    <div class="info"><span class="tag">Casa</span>
+                        <h3>Casa Pátio</h3>
+                        <p>3 quartos · 204 m² · Vila Verde</p>
+                        <div class="price">R$ 980.000 <span>→</span></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="story" id="como">
+            <div><span class="eyebrow" style="color:#a7502d">Sem pressão, com contexto</span>
+                <h2>Visita boa começa antes de abrir a porta.</h2>
+                <p>Em vez de despejar anúncios, o processo organiza preferências e só apresenta o
+                    que tem chance de virar casa.</p>
+            </div>
+            <div class="steps">
+                <div class="step"><b>01</b> Você conta como quer viver, não só quantos quartos
+                    precisa.</div>
+                <div class="step"><b>02</b> A curadoria separa opções com contexto e comparação
+                    clara.</div>
+                <div class="step"><b>03</b> A visita acontece com as respostas que evitam surpresa
+                    depois.</div>
+            </div>
+        </section>
+        <footer class="footer" id="contato">Vale · experiência imobiliária</footer>
+    </main>
+    <div class="modal" id="modal">
+        <div class="dialog">
+            <div class="dialog-img"></div>
+            <div class="dialog-info"><button class="close" onclick="closeModal()">×</button><span
+                    class="tag">Agendamento de visita</span>
+                <h2 id="homeTitle">Casa do Vale</h2>
+                <p>Escolha uma janela de horário. Em uma operação real, esta solicitação entraria na
+                    agenda do corretor e enviaria confirmação ao interessado.</p><input
+                    placeholder="Seu nome"><input placeholder="Seu melhor telefone"><select>
+                    <option>Quero visitar pela manhã</option>
+                    <option>Quero visitar à tarde</option>
+                    <option>Quero visitar no sábado</option>
+                </select><button style="width:100%;margin-top:8px" onclick="sendLead()">Solicitar
+                    visita</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openModal(name) {
+            homeTitle.textContent = name || 'Casa do Vale';
+            modal.classList.add('show')
+        }
+
+        function closeModal() {
+            modal.classList.remove('show')
+        }
+
+        function sendLead() {
+            closeModal();
+            alert('Visita solicitada. Uma confirmação seria enviada na operação real.')
+        }
+
+        function filterHomes() {
+            let p = place.value.trim(),
+                t = type.value;
+            result.textContent = p || t ? 'Mostrando imóveis compatíveis com sua busca.' :
+                'Três imóveis escolhidos por localização, arquitetura e potencial de vida.';
+            document.querySelector('#imoveis').scrollIntoView({
+                behavior: 'smooth'
+            })
+        }
+    </script>
+</body>
+
+</html>
