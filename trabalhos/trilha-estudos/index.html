@@ -18,7 +18,7 @@
   <header><div class="brand">plural<i></i></div><div class="status"><span>Minha aprendizagem</span><div class="avatar">AM</div></div></header>
   <main>
     <div class="crumb">Biblioteca / Produto &amp; negócios / Trilha em andamento</div>
-    <section class="intro"><div><span class="tag">TRILHA PRÁTICA</span><h1>Produto digital<br>do zero ao fluxo.</h1></div><p>Uma experiência demonstrativa de ensino online com conteúdo, acompanhamento e atividades. Todos os dados são fictícios.</p></section>
+    <section class="intro"><div><span class="tag">TRILHA PRÁTICA</span><h1>Produto digital<br>do zero ao fluxo.</h1></div><p>Uma experiência de ensino online com conteúdo, acompanhamento e atividades.</p></section>
     <section class="course">
       <aside class="side"><h2>Sua trilha</h2><div class="progress-label"><span>Progresso</span><span id="percent">42%</span></div><div class="meter"><span id="meter"></span></div><ul class="modules" id="lessons">
         <li class="lesson done" data-title="O problema antes da solução" data-type="AULA 01"><span class="dot">✓</span><div><strong>O problema antes da solução</strong><small>Concluída · 08 min</small></div></li>
@@ -32,10 +32,10 @@
         <div class="content" id="lessonContent"><h3>Comece pelo caminho, não pela tela.</h3><p>Um fluxo bem definido reduz retrabalho: qual é o primeiro passo, onde a pessoa toma uma decisão e como ela sabe que deu certo? Nesta aula, você organiza a primeira versão sem aumentar o escopo.</p><div class="keypoints"><div>01 · Defina a ação principal</div><div>02 · Remova passos desnecessários</div><div>03 · Valide antes de expandir</div></div><div class="actions"><button class="btn" id="complete">Marcar como concluída</button><button class="btn secondary" id="quizBtn">Fazer quiz rápido</button></div></div>
         <div class="quiz" id="quiz"><small>QUIZ · 1 DE 3</small><h3>O que deve orientar a primeira versão de um produto?</h3><div class="options"><div class="option" data-answer="wrong">Adicionar todas as funcionalidades imaginadas.</div><div class="option" data-answer="right">Validar o principal problema e o caminho essencial.</div><div class="option" data-answer="wrong">Escolher primeiro a cor e os detalhes visuais.</div></div><button class="btn" id="nextQuiz">Responder</button><div class="feedback" id="feedback"></div></div>
       </article>
-    </section><p class="notice">Projeto demonstrativo — instituição, alunos, módulos e métricas apresentados nesta página são fictícios.</p>
+    </section><p class="notice">Visão de uma jornada de aprendizagem com acompanhamento de progresso e atividades.</p>
   </main>
 </div>
-<div class="modal" id="modal"><div class="certificate"><div class="seal">✦</div><p>CERTIFICADO DE CONCLUSÃO</p><h2>Produto digital<br>do zero ao fluxo</h2><p>Este certificado simula a conclusão da trilha por</p><strong>Aluno(a) demonstrativo(a)</strong><p>Emitido para fins de demonstração de interface.</p><button class="close" id="closeModal">Fechar</button></div></div>
+<div class="modal" id="modal"><div class="certificate"><div class="seal">✦</div><p>CERTIFICADO DE CONCLUSÃO</p><h2>Produto digital<br>do zero ao fluxo</h2><p>Este certificado registra a conclusão da trilha por</p><strong>Aluno(a)</strong><p>Emitido ao final da jornada de aprendizagem.</p><button class="close" id="closeModal">Fechar</button></div></div>
 <script>
   const lessons=[...document.querySelectorAll('.lesson')],title=document.querySelector('#videoTitle'),type=document.querySelector('#lessonType'),quiz=document.querySelector('#quiz');
   lessons.forEach(item=>item.addEventListener('click',()=>{lessons.forEach(x=>x.classList.remove('active'));item.classList.add('active');title.textContent=item.dataset.title;type.textContent=item.dataset.type;if(item.dataset.type==='QUIZ'){quiz.classList.add('show');document.querySelector('#lessonContent').style.display='none'}else{quiz.classList.remove('show');document.querySelector('#lessonContent').style.display='block'}}));
